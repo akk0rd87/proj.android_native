@@ -69,75 +69,83 @@ fun MainScreen(
                 )
             }
 
-            // Size cards list
-            LazyColumn(
-                modifier = Modifier.fillMaxSize(),
-                contentPadding = PaddingValues(horizontal = 32.dp, vertical = 16.dp),
-                verticalArrangement = Arrangement.spacedBy(16.dp)
+            // Size cards area that fills remaining space — cards will share available height so
+            // all five fit on the screen without scrolling.
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(horizontal = 32.dp, vertical = 16.dp),
+                verticalArrangement = Arrangement.spacedBy(12.dp)
             ) {
-                items(groups) { group ->
-                    val (color, bgColor) = getSizeColors(group.size)
+                // Make the list area take the remaining space so cards can use weight
+                Column(
+                    modifier = Modifier
+                        .weight(1f),
+                    verticalArrangement = Arrangement.spacedBy(12.dp)
+                ) {
+                    groups.forEach { group ->
+                        val (color, bgColor) = getSizeColors(group.size)
 
-                    SizeCard(
-                        shortLabel = group.size.shortLabel,
-                        fullLabel = group.size.label,
-                        puzzleCount = group.totalPuzzles,
-                        progressPercent = group.progressPercent,
-                        color = color,
-                        backgroundColor = bgColor,
-                        onClick = { onGroupSelected(group.id) }
-                    )
-                }
-
-                // Stats section at bottom
-                item {
-                    Spacer(modifier = Modifier.height(16.dp))
-
-                    Card(
-                        modifier = Modifier.fillMaxWidth(),
-                        colors = CardDefaults.cardColors(
-                            containerColor = Surface.copy(alpha = 0.5f)
-                        )
-                    ) {
-                        Row(
+                        SizeCard(
+                            shortLabel = group.size.shortLabel,
+                            fullLabel = group.size.label,
+                            puzzleCount = group.totalPuzzles,
+                            progressPercent = group.progressPercent,
+                            color = color,
+                            backgroundColor = bgColor,
+                            onClick = { onGroupSelected(group.id) },
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(24.dp),
-                            horizontalArrangement = Arrangement.SpaceAround
-                        ) {
-                            Column(
-                                horizontalAlignment = Alignment.CenterHorizontally
-                            ) {
-                                Text(
-                                    text = "TOTAL",
-                                    fontSize = 12.sp,
-                                    fontWeight = FontWeight.SemiBold,
-                                    color = TextSecondary
-                                )
-                                Text(
-                                    text = "${groups.sumOf { it.totalPuzzles }}",
-                                    fontSize = 28.sp,
-                                    fontWeight = FontWeight.Bold,
-                                    color = TextPrimary
-                                )
-                            }
+                                .weight(1f)
+                        )
+                    }
+                }
 
-                            Column(
-                                horizontalAlignment = Alignment.CenterHorizontally
-                            ) {
-                                Text(
-                                    text = "SOLVED",
-                                    fontSize = 12.sp,
-                                    fontWeight = FontWeight.SemiBold,
-                                    color = TextSecondary
-                                )
-                                Text(
-                                    text = "${groups.sumOf { it.solvedPuzzles }}",
-                                    fontSize = 28.sp,
-                                    fontWeight = FontWeight.Bold,
-                                    color = ColorS
-                                )
-                            }
+                // Stats section at bottom (fixed height)
+                Card(
+                    modifier = Modifier.fillMaxWidth(),
+                    colors = CardDefaults.cardColors(
+                        containerColor = Surface.copy(alpha = 0.5f)
+                    )
+                ) {
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(24.dp),
+                        horizontalArrangement = Arrangement.SpaceAround
+                    ) {
+                        Column(
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ) {
+                            Text(
+                                text = "TOTAL",
+                                fontSize = 12.sp,
+                                fontWeight = FontWeight.SemiBold,
+                                color = TextSecondary
+                            )
+                            Text(
+                                text = "${groups.sumOf { it.totalPuzzles }}",
+                                fontSize = 28.sp,
+                                fontWeight = FontWeight.Bold,
+                                color = TextPrimary
+                            )
+                        }
+
+                        Column(
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ) {
+                            Text(
+                                text = "SOLVED",
+                                fontSize = 12.sp,
+                                fontWeight = FontWeight.SemiBold,
+                                color = TextSecondary
+                            )
+                            Text(
+                                text = "${groups.sumOf { it.solvedPuzzles }}",
+                                fontSize = 28.sp,
+                                fontWeight = FontWeight.Bold,
+                                color = ColorS
+                            )
                         }
                     }
                 }

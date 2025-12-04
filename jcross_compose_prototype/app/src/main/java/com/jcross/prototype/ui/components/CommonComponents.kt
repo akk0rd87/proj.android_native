@@ -34,7 +34,7 @@ fun SizeCard(
     Card(
         modifier = modifier
             .fillMaxWidth()
-            .height(140.dp)
+            .defaultMinSize(minHeight = 96.dp)
             .shadow(
                 elevation = 8.dp,
                 shape = RoundedCornerShape(20.dp),
