@@ -2,9 +2,6 @@ package com.jcross.prototype.navigation
 
 import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.ExitTransition
-import androidx.compose.animation.core.tween
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
@@ -40,18 +37,13 @@ fun AppNavigation(
     navController: NavHostController,
     onThemeSelected: (com.jcross.prototype.model.AppTheme) -> Unit = {}
 ) {
-    // Fast animations - 150ms instead of default 300ms
-    val animationDuration = 150
-    val enterTransition = fadeIn(animationSpec = tween(animationDuration))
-    val exitTransition = fadeOut(animationSpec = tween(animationDuration))
-
     NavHost(
         navController = navController,
         startDestination = Screen.Main.route,
-        enterTransition = { enterTransition },
-        exitTransition = { exitTransition },
-        popEnterTransition = { enterTransition },
-        popExitTransition = { exitTransition }
+        enterTransition = { EnterTransition.None },
+        exitTransition = { ExitTransition.None },
+        popEnterTransition = { EnterTransition.None },
+        popExitTransition = { ExitTransition.None }
     ) {
         // Главный экран
         composable(Screen.Main.route) {
