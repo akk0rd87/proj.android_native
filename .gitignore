@@ -1,0 +1,15 @@
+jcross_compose_prototype/.idea/
+jcross_compose_prototype/.gradle/
+jcross_compose_prototype/build/
+jcross_compose_prototype/app/build/
+jcross_compose_prototype/local.properties
+jcross_compose_prototype/captures/
+jcross_compose_prototype/.cxx/
+jcross_compose_prototype/*.iml
+.DS_Store
+.gradle/
+/build/
+/local.properties
+/captures/
+.cxx/
+*.iml
