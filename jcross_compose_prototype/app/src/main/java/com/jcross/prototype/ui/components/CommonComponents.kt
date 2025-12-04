@@ -29,12 +29,23 @@ fun SizeCard(
     color: Color,
     backgroundColor: Color,
     onClick: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    isCompact: Boolean = false
 ) {
+    // Adaptive sizes based on card compactness
+    val iconSize = if (isCompact) 50.dp else 70.dp
+    val labelFontSize = if (isCompact) 20.sp else 28.sp
+    val titleFontSize = if (isCompact) 18.sp else 24.sp
+    val puzzlesFontSize = if (isCompact) 11.sp else 14.sp
+    val percentFontSize = if (isCompact) 16.sp else 20.sp
+    val cardPadding = if (isCompact) 12.dp else 16.dp
+    val spacerWidth = if (isCompact) 12.dp else 24.dp
+    val progressBarHeight = if (isCompact) 6.dp else 8.dp
+
     Card(
         modifier = modifier
             .fillMaxWidth()
-            .defaultMinSize(minHeight = 96.dp)
+            .defaultMinSize(minHeight = if (isCompact) 72.dp else 96.dp)
             .shadow(
                 elevation = 8.dp,
                 shape = RoundedCornerShape(20.dp),
@@ -47,26 +58,26 @@ fun SizeCard(
         Row(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(16.dp),
+                .padding(cardPadding),
             verticalAlignment = Alignment.CenterVertically
         ) {
             // Icon circle
             Box(
                 modifier = Modifier
-                    .size(70.dp)
+                    .size(iconSize)
                     .clip(CircleShape)
                     .background(backgroundColor),
                 contentAlignment = Alignment.Center
             ) {
                 Text(
                     text = shortLabel,
-                    fontSize = 28.sp,
+                    fontSize = labelFontSize,
                     fontWeight = FontWeight.Bold,
                     color = color
                 )
             }
 
-            Spacer(modifier = Modifier.width(24.dp))
+            Spacer(modifier = Modifier.width(spacerWidth))
 
             // Content
             Column(
@@ -75,26 +86,28 @@ fun SizeCard(
             ) {
                 Text(
                     text = fullLabel,
-                    fontSize = 24.sp,
+                    fontSize = titleFontSize,
                     fontWeight = FontWeight.SemiBold,
                     color = TextPrimary
                 )
 
-                Spacer(modifier = Modifier.height(4.dp))
+                if (!isCompact) {
+                    Spacer(modifier = Modifier.height(4.dp))
+                }
 
                 Text(
                     text = "$puzzleCount puzzles",
-                    fontSize = 14.sp,
+                    fontSize = puzzlesFontSize,
                     color = TextSecondary
                 )
 
-                Spacer(modifier = Modifier.height(8.dp))
+                Spacer(modifier = Modifier.height(if (isCompact) 4.dp else 8.dp))
 
                 // Progress bar
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(8.dp)
+                        .height(progressBarHeight)
                         .clip(RoundedCornerShape(4.dp))
                         .background(DividerColor)
                 ) {
@@ -108,12 +121,12 @@ fun SizeCard(
                 }
             }
 
-            Spacer(modifier = Modifier.width(16.dp))
+            Spacer(modifier = Modifier.width(if (isCompact) 8.dp else 16.dp))
 
             // Progress percentage
             Text(
                 text = "${(progressPercent * 100).toInt()}%",
-                fontSize = 20.sp,
+                fontSize = percentFontSize,
                 fontWeight = FontWeight.SemiBold,
                 color = TextSecondary
             )

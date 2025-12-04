@@ -1,10 +1,15 @@
 package com.jcross.prototype.ui.screens
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
+import kotlin.math.ceil
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import android.util.Log
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
@@ -51,100 +56,90 @@ fun MainScreen(
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 32.dp, vertical = 24.dp)
+                    .padding(horizontal = 32.dp, vertical = 24.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(
-                    text = "JCross Nonograms",
+                    text = "JCROSS NONOGRAMS",
                     fontSize = 28.sp,
                     fontWeight = FontWeight.Bold,
                     color = TextPrimary
                 )
-
-                Spacer(modifier = Modifier.height(8.dp))
-
-                Text(
-                    text = "Select puzzle size",
-                    fontSize = 16.sp,
-                    color = TextSecondary
-                )
             }
 
-            // Size cards area that fills remaining space — cards will share available height so
-            // all five fit on the screen without scrolling.
-            Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(horizontal = 32.dp, vertical = 16.dp),
-                verticalArrangement = Arrangement.spacedBy(12.dp)
+            // Content area: choose single-column (portrait) or two-column (landscape).
+            BoxWithConstraints(
+                modifier = Modifier.fillMaxSize()
             ) {
-                // Make the list area take the remaining space so cards can use weight
+                val isLandscape = maxWidth > maxHeight
+
                 Column(
                     modifier = Modifier
-                        .weight(1f),
+                        .fillMaxSize()
+                        .padding(horizontal = 32.dp, vertical = 16.dp),
                     verticalArrangement = Arrangement.spacedBy(12.dp)
                 ) {
-                    groups.forEach { group ->
-                        val (color, bgColor) = getSizeColors(group.size)
+                    BoxWithConstraints(modifier = Modifier.weight(1f)) {
+                        val gap = 12.dp
 
-                        SizeCard(
-                            shortLabel = group.size.shortLabel,
-                            fullLabel = group.size.label,
-                            puzzleCount = group.totalPuzzles,
-                            progressPercent = group.progressPercent,
-                            color = color,
-                            backgroundColor = bgColor,
-                            onClick = { onGroupSelected(group.id) },
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .weight(1f)
-                        )
-                    }
-                }
+                        if (!isLandscape) {
+                            // Portrait: stack cards vertically and share height equally
+                            Column(
+                                modifier = Modifier.fillMaxSize(),
+                                verticalArrangement = Arrangement.spacedBy(gap)
+                            ) {
+                                groups.forEach { group ->
+                                    val (color, bgColor) = getSizeColors(group.size)
 
-                // Stats section at bottom (fixed height)
-                Card(
-                    modifier = Modifier.fillMaxWidth(),
-                    colors = CardDefaults.cardColors(
-                        containerColor = Surface.copy(alpha = 0.5f)
-                    )
-                ) {
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(24.dp),
-                        horizontalArrangement = Arrangement.SpaceAround
-                    ) {
-                        Column(
-                            horizontalAlignment = Alignment.CenterHorizontally
-                        ) {
-                            Text(
-                                text = "TOTAL",
-                                fontSize = 12.sp,
-                                fontWeight = FontWeight.SemiBold,
-                                color = TextSecondary
-                            )
-                            Text(
-                                text = "${groups.sumOf { it.totalPuzzles }}",
-                                fontSize = 28.sp,
-                                fontWeight = FontWeight.Bold,
-                                color = TextPrimary
-                            )
-                        }
+                                    SizeCard(
+                                        shortLabel = group.size.shortLabel,
+                                        fullLabel = group.size.label,
+                                        puzzleCount = group.totalPuzzles,
+                                        progressPercent = group.progressPercent,
+                                        color = color,
+                                        backgroundColor = bgColor,
+                                        onClick = { onGroupSelected(group.id) },
+                                        modifier = Modifier
+                                            .fillMaxWidth()
+                                            .weight(1f)
+                                    )
+                                }
+                            }
+                        } else {
+                            // Landscape: render grid with 2 columns; compute cell height so grid fits without scroll
+                            Log.i("MainScreen", "Landscape layout: maxW=$maxWidth maxH=$maxHeight")
+                            val columns = 2
+                            val rows = ceil(groups.size / columns.toDouble()).toInt()
+                            val totalGaps = gap * (rows - 1)
+                            var cellHeight = (maxHeight - totalGaps) / rows
+                            // Lower minimum height to fit all cards
+                            cellHeight = cellHeight.coerceAtLeast(50.dp)
+                            Log.i("MainScreen", "rows=$rows totalGaps=$totalGaps cellHeight=$cellHeight")
 
-                        Column(
-                            horizontalAlignment = Alignment.CenterHorizontally
-                        ) {
-                            Text(
-                                text = "SOLVED",
-                                fontSize = 12.sp,
-                                fontWeight = FontWeight.SemiBold,
-                                color = TextSecondary
-                            )
-                            Text(
-                                text = "${groups.sumOf { it.solvedPuzzles }}",
-                                fontSize = 28.sp,
-                                fontWeight = FontWeight.Bold,
-                                color = ColorS
+                            LazyVerticalGrid(
+                                columns = GridCells.Fixed(columns),
+                                modifier = Modifier.fillMaxWidth(),
+                                horizontalArrangement = Arrangement.spacedBy(gap),
+                                verticalArrangement = Arrangement.spacedBy(gap),
+                                userScrollEnabled = false,
+                                content = {
+                                    items(groups) { g ->
+                                        val (color, bgColor) = getSizeColors(g.size)
+                                        SizeCard(
+                                            shortLabel = g.size.shortLabel,
+                                            fullLabel = g.size.label,
+                                            puzzleCount = g.totalPuzzles,
+                                            progressPercent = g.progressPercent,
+                                            color = color,
+                                            backgroundColor = bgColor,
+                                            onClick = { onGroupSelected(g.id) },
+                                            isCompact = true,
+                                            modifier = Modifier
+                                                .height(cellHeight)
+                                                .fillMaxWidth()
+                                        )
+                                    }
+                                }
                             )
                         }
                     }

@@ -13,3 +13,4 @@ jcross_compose_prototype/*.iml
 /captures/
 .cxx/
 *.iml
+/.claude/settings.local.json
