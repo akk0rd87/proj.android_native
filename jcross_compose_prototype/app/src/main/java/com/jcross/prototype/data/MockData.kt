@@ -138,7 +138,7 @@ object MockDataProvider {
         return listOf(
             AppTheme(
                 id = 0,
-                name = "Default",
+                name = "Classic Light",
                 primaryColor = 0xFF3F51B5,
                 secondaryColor = 0xFF00BCD4,
                 backgroundColor = 0xFFF5F7FA,
@@ -146,34 +146,90 @@ object MockDataProvider {
             ),
             AppTheme(
                 id = 1,
-                name = "Dark",
-                primaryColor = 0xFF1A1A1A,
-                secondaryColor = 0xFF00F5FF,
-                backgroundColor = 0xFF0F0F1E,
-                isSelected = false
-            ),
-            AppTheme(
-                id = 2,
-                name = "Ocean",
-                primaryColor = 0xFF2196F3,
+                name = "Ocean Blue",
+                primaryColor = 0xFF0277BD,
                 secondaryColor = 0xFF00BCD4,
                 backgroundColor = 0xFFE3F2FD,
                 isSelected = false
             ),
             AppTheme(
-                id = 3,
-                name = "Forest",
-                primaryColor = 0xFF4CAF50,
-                secondaryColor = 0xFF8BC34A,
+                id = 2,
+                name = "Forest Green",
+                primaryColor = 0xFF2E7D32,
+                secondaryColor = 0xFF66BB6A,
                 backgroundColor = 0xFFE8F5E9,
                 isSelected = false
             ),
             AppTheme(
-                id = 4,
-                name = "Sunset",
-                primaryColor = 0xFFFF6B6B,
-                secondaryColor = 0xFFFFE66D,
+                id = 3,
+                name = "Sunset Orange",
+                primaryColor = 0xFFE65100,
+                secondaryColor = 0xFFFF9800,
                 backgroundColor = 0xFFFFF3E0,
+                isSelected = false
+            ),
+            AppTheme(
+                id = 4,
+                name = "Purple Dream",
+                primaryColor = 0xFF6A1B9A,
+                secondaryColor = 0xFFAB47BC,
+                backgroundColor = 0xFFF3E5F5,
+                isSelected = false
+            ),
+            AppTheme(
+                id = 5,
+                name = "Dark Mode",
+                primaryColor = 0xFFBB86FC,
+                secondaryColor = 0xFF03DAC6,
+                backgroundColor = 0xFF121212,
+                isSelected = false
+            ),
+            AppTheme(
+                id = 6,
+                name = "Candy Pink",
+                primaryColor = 0xFFC2185B,
+                secondaryColor = 0xFFF06292,
+                backgroundColor = 0xFFFCE4EC,
+                isSelected = false
+            ),
+            AppTheme(
+                id = 7,
+                name = "Mint Fresh",
+                primaryColor = 0xFF00695C,
+                secondaryColor = 0xFF26A69A,
+                backgroundColor = 0xFFE0F2F1,
+                isSelected = false
+            ),
+            AppTheme(
+                id = 8,
+                name = "Royal Purple",
+                primaryColor = 0xFF5E35B1,
+                secondaryColor = 0xFF9575CD,
+                backgroundColor = 0xFFEDE7F6,
+                isSelected = false
+            ),
+            AppTheme(
+                id = 9,
+                name = "Cherry Red",
+                primaryColor = 0xFFC62828,
+                secondaryColor = 0xFFEF5350,
+                backgroundColor = 0xFFFFEBEE,
+                isSelected = false
+            ),
+            AppTheme(
+                id = 10,
+                name = "Golden Yellow",
+                primaryColor = 0xFFF57F17,
+                secondaryColor = 0xFFFFD54F,
+                backgroundColor = 0xFFFFFDE7,
+                isSelected = false
+            ),
+            AppTheme(
+                id = 11,
+                name = "Midnight Blue",
+                primaryColor = 0xFF0D47A1,
+                secondaryColor = 0xFF42A5F5,
+                backgroundColor = 0xFFE1F5FE,
                 isSelected = false
             )
         )

@@ -27,14 +27,15 @@ import com.jcross.prototype.ui.theme.*
  */
 @Composable
 fun ThemesScreen(
-    onBackClick: () -> Unit
+    onBackClick: () -> Unit,
+    onThemeSelected: (AppTheme) -> Unit = {}
 ) {
     var themes by remember { mutableStateOf(MockDataProvider.getThemes()) }
 
     Scaffold(
         topBar = {
             JCrossTopBar(
-                title = "Themes",
+                title = "Color Themes",
                 onBackClick = onBackClick
             )
         }
@@ -53,6 +54,7 @@ fun ThemesScreen(
                         themes = themes.map {
                             it.copy(isSelected = it.id == theme.id)
                         }
+                        onThemeSelected(theme)
                     }
                 )
             }

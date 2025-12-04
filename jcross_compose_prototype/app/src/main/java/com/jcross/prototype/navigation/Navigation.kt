@@ -31,7 +31,10 @@ sealed class Screen(val route: String) {
  * Граф навигации приложения
  */
 @Composable
-fun AppNavigation(navController: NavHostController) {
+fun AppNavigation(
+    navController: NavHostController,
+    onThemeSelected: (com.jcross.prototype.model.AppTheme) -> Unit = {}
+) {
     NavHost(
         navController = navController,
         startDestination = Screen.Main.route
@@ -119,7 +122,8 @@ fun AppNavigation(navController: NavHostController) {
         // Экран тем
         composable(Screen.Themes.route) {
             ThemesScreen(
-                onBackClick = { navController.popBackStack() }
+                onBackClick = { navController.popBackStack() },
+                onThemeSelected = onThemeSelected
             )
         }
     }
