@@ -47,15 +47,21 @@ fun ThemesScreen(
             contentPadding = PaddingValues(24.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            items(themes) { theme ->
-                ThemeCard(
-                    theme = theme,
-                    onSelect = {
+            items(
+                items = themes,
+                key = { it.id }
+            ) { theme ->
+                val onSelectCallback = remember(theme.id) {
+                    {
                         themes = themes.map {
                             it.copy(isSelected = it.id == theme.id)
                         }
                         onThemeSelected(theme)
                     }
+                }
+                ThemeCard(
+                    theme = theme,
+                    onSelect = onSelectCallback
                 )
             }
         }

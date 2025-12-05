@@ -1,8 +1,12 @@
 package com.jcross.prototype.model
 
+import androidx.compose.runtime.Immutable
+import androidx.compose.runtime.Stable
+
 /**
  * Размер головоломки
  */
+@Stable
 enum class PuzzleSize(val label: String, val shortLabel: String) {
     EXTRA_SMALL("Extra Small", "XS"),
     SMALL("Small", "S"),
@@ -14,6 +18,7 @@ enum class PuzzleSize(val label: String, val shortLabel: String) {
 /**
  * Группа головоломок (категория по размеру)
  */
+@Immutable
 data class Group(
     val id: Int,
     val size: PuzzleSize,
@@ -28,6 +33,7 @@ data class Group(
 /**
  * Папка с головоломками
  */
+@Immutable
 data class Folder(
     val id: Int,
     val name: String,
@@ -44,6 +50,7 @@ data class Folder(
 /**
  * Головоломка
  */
+@Immutable
 data class Puzzle(
     val id: Int,
     val name: String,
@@ -55,6 +62,7 @@ data class Puzzle(
 /**
  * Состояние ячейки в головоломке
  */
+@Stable
 enum class CellState {
     EMPTY,      // Пустая
     FILLED,     // Закрашенная
@@ -64,6 +72,7 @@ enum class CellState {
 /**
  * Игровое поле
  */
+@Stable
 data class GameField(
     val width: Int,
     val height: Int,
@@ -99,6 +108,7 @@ data class GameField(
 /**
  * Тема оформления
  */
+@Immutable
 data class AppTheme(
     val id: Int,
     val name: String,
@@ -111,6 +121,7 @@ data class AppTheme(
 /**
  * Настройки приложения
  */
+@Immutable
 data class AppSettings(
     val soundEnabled: Boolean = true,
     val musicEnabled: Boolean = true,

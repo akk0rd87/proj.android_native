@@ -8,7 +8,9 @@ import kotlin.math.ceil
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.key
+import androidx.compose.runtime.remember
 import android.util.Log
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -90,20 +92,23 @@ fun MainScreen(
                                 verticalArrangement = Arrangement.spacedBy(gap)
                             ) {
                                 groups.forEach { group ->
-                                    val (color, bgColor) = getSizeColors(group.size)
+                                    key(group.id) {
+                                        val (color, bgColor) = remember(group.size) { getSizeColors(group.size) }
+                                        val onClick = remember(group.id) { { onGroupSelected(group.id) } }
 
-                                    SizeCard(
-                                        shortLabel = group.size.shortLabel,
-                                        fullLabel = group.size.label,
-                                        puzzleCount = group.totalPuzzles,
-                                        progressPercent = group.progressPercent,
-                                        color = color,
-                                        backgroundColor = bgColor,
-                                        onClick = { onGroupSelected(group.id) },
-                                        modifier = Modifier
-                                            .fillMaxWidth()
-                                            .weight(1f)
-                                    )
+                                        SizeCard(
+                                            shortLabel = group.size.shortLabel,
+                                            fullLabel = group.size.label,
+                                            puzzleCount = group.totalPuzzles,
+                                            progressPercent = group.progressPercent,
+                                            color = color,
+                                            backgroundColor = bgColor,
+                                            onClick = onClick,
+                                            modifier = Modifier
+                                                .fillMaxWidth()
+                                                .weight(1f)
+                                        )
+                                    }
                                 }
                             }
                         } else {
@@ -124,8 +129,12 @@ fun MainScreen(
                                 verticalArrangement = Arrangement.spacedBy(gap),
                                 userScrollEnabled = false,
                                 content = {
-                                    items(groups) { g ->
-                                        val (color, bgColor) = getSizeColors(g.size)
+                                    items(
+                                        items = groups,
+                                        key = { it.id }
+                                    ) { g ->
+                                        val (color, bgColor) = remember(g.size) { getSizeColors(g.size) }
+                                        val onClick = remember(g.id) { { onGroupSelected(g.id) } }
                                         SizeCard(
                                             shortLabel = g.size.shortLabel,
                                             fullLabel = g.size.label,
@@ -133,7 +142,7 @@ fun MainScreen(
                                             progressPercent = g.progressPercent,
                                             color = color,
                                             backgroundColor = bgColor,
-                                            onClick = { onGroupSelected(g.id) },
+                                            onClick = onClick,
                                             isCompact = true,
                                             modifier = Modifier
                                                 .height(cellHeight)

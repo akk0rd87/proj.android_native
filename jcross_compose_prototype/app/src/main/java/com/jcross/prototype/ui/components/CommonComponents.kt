@@ -7,6 +7,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -425,6 +426,16 @@ data class NavBarIcon(
     val contentDescription: String
 )
 
+// Статический список иконок - создаётся один раз
+private val navBarIcons = listOf(
+    NavBarIcon("monkey.svg", "Home"),
+    NavBarIcon("settings.svg", "Settings"),
+    NavBarIcon("brush.svg", "Themes"),
+    NavBarIcon("info.svg", "Info"),
+    NavBarIcon("rate.svg", "Rate"),
+    NavBarIcon("envelope.svg", "Contact")
+)
+
 /**
  * Нижняя панель навигации с SVG иконками (оригинальное качество)
  */
@@ -435,14 +446,6 @@ fun BottomNavigationBar(
     modifier: Modifier = Modifier
 ) {
     val context = LocalContext.current
-    val icons = listOf(
-        NavBarIcon("monkey.svg", "Home"),
-        NavBarIcon("settings.svg", "Settings"),
-        NavBarIcon("brush.svg", "Themes"),
-        NavBarIcon("info.svg", "Info"),
-        NavBarIcon("rate.svg", "Rate"),
-        NavBarIcon("envelope.svg", "Contact")
-    )
 
     Surface(
         modifier = modifier.fillMaxWidth(),
@@ -457,7 +460,14 @@ fun BottomNavigationBar(
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            icons.forEachIndexed { index, navIcon ->
+            navBarIcons.forEachIndexed { index, navIcon ->
+                val imageRequest = remember(navIcon.svgFileName) {
+                    ImageRequest.Builder(context)
+                        .data("file:///android_asset/svg/${navIcon.svgFileName}")
+                        .decoderFactory(SvgDecoder.Factory())
+                        .build()
+                }
+
                 Box(
                     modifier = Modifier
                         .size(48.dp)
@@ -470,10 +480,7 @@ fun BottomNavigationBar(
                     contentAlignment = Alignment.Center
                 ) {
                     AsyncImage(
-                        model = ImageRequest.Builder(context)
-                            .data("file:///android_asset/svg/${navIcon.svgFileName}")
-                            .decoderFactory(SvgDecoder.Factory())
-                            .build(),
+                        model = imageRequest,
                         contentDescription = navIcon.contentDescription,
                         modifier = Modifier.size(32.dp)
                     )

@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.runtime.snapshots.SnapshotStateMap
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -35,7 +36,29 @@ fun GameScreen(
     val puzzle = puzzles.getOrNull(puzzleId) ?: return
 
     val gameField = remember { MockDataProvider.getGameField(puzzle) }
-    val cells = remember { mutableStateOf(gameField.cells) }
+
+    // Используем mutableStateMapOf для точечных обновлений без копирования всего массива
+    val cellStates = remember {
+        mutableStateMapOf<Pair<Int, Int>, CellState>().apply {
+            for (row in 0 until gameField.height) {
+                for (col in 0 until gameField.width) {
+                    put(row to col, gameField.cells[row][col])
+                }
+            }
+        }
+    }
+
+    // Callback для обновления ячейки - стабильная ссылка
+    val onCellClick = remember<(Int, Int) -> Unit> {
+        { row, col ->
+            val currentState = cellStates[row to col] ?: CellState.EMPTY
+            cellStates[row to col] = when (currentState) {
+                CellState.EMPTY -> CellState.FILLED
+                CellState.FILLED -> CellState.MARKED
+                CellState.MARKED -> CellState.EMPTY
+            }
+        }
+    }
 
     // Enable immersive mode when entering game screen
     DisposableEffect(Unit) {
@@ -84,19 +107,16 @@ fun GameScreen(
                                 horizontalArrangement = Arrangement.spacedBy(2.dp)
                             ) {
                                 for (col in 0 until gameField.width) {
-                                    GameCell(
-                                        state = cells.value[row][col],
-                                        onClick = {
-                                            val newCells = cells.value.map { it.clone() }.toTypedArray()
-                                            newCells[row][col] = when (cells.value[row][col]) {
-                                                CellState.EMPTY -> CellState.FILLED
-                                                CellState.FILLED -> CellState.MARKED
-                                                CellState.MARKED -> CellState.EMPTY
-                                            }
-                                            cells.value = newCells
-                                        },
-                                        modifier = Modifier.weight(1f).aspectRatio(1f)
-                                    )
+                                    key(row, col) {
+                                        val state = cellStates[row to col] ?: CellState.EMPTY
+                                        GameCell(
+                                            state = state,
+                                            row = row,
+                                            col = col,
+                                            onCellClick = onCellClick,
+                                            modifier = Modifier.weight(1f).aspectRatio(1f)
+                                        )
+                                    }
                                 }
                             }
                         }
@@ -148,7 +168,9 @@ fun GameScreen(
 @Composable
 fun GameCell(
     state: CellState,
-    onClick: () -> Unit,
+    row: Int,
+    col: Int,
+    onCellClick: (Int, Int) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Box(
@@ -162,7 +184,7 @@ fun GameCell(
                 }
             )
             .border(1.dp, DividerColor, RoundedCornerShape(4.dp))
-            .clickable(onClick = onClick),
+            .clickable { onCellClick(row, col) },
         contentAlignment = Alignment.Center
     ) {
         if (state == CellState.MARKED) {
