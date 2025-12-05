@@ -12,9 +12,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil.compose.AsyncImage
+import coil.decode.SvgDecoder
+import coil.request.ImageRequest
 import com.jcross.prototype.ui.theme.*
 
 /**
@@ -414,7 +418,15 @@ fun PuzzleGridCard(
 }
 
 /**
- * Нижняя панель навигации
+ * Данные для иконок нижней панели навигации
+ */
+data class NavBarIcon(
+    val svgFileName: String,
+    val contentDescription: String
+)
+
+/**
+ * Нижняя панель навигации с SVG иконками (оригинальное качество)
  */
 @Composable
 fun BottomNavigationBar(
@@ -422,6 +434,16 @@ fun BottomNavigationBar(
     onItemSelected: (Int) -> Unit,
     modifier: Modifier = Modifier
 ) {
+    val context = LocalContext.current
+    val icons = listOf(
+        NavBarIcon("monkey.svg", "Home"),
+        NavBarIcon("settings.svg", "Settings"),
+        NavBarIcon("brush.svg", "Themes"),
+        NavBarIcon("info.svg", "Info"),
+        NavBarIcon("rate.svg", "Rate"),
+        NavBarIcon("envelope.svg", "Contact")
+    )
+
     Surface(
         modifier = modifier.fillMaxWidth(),
         shadowElevation = 8.dp,
@@ -431,21 +453,31 @@ fun BottomNavigationBar(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(80.dp)
-                .padding(horizontal = 32.dp),
+                .padding(horizontal = 24.dp),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            repeat(6) { index ->
+            icons.forEachIndexed { index, navIcon ->
                 Box(
                     modifier = Modifier
-                        .size(44.dp)
+                        .size(48.dp)
                         .clip(CircleShape)
                         .background(
-                            if (index == selectedIndex) Primary
-                            else DividerColor
+                            if (index == selectedIndex) Primary.copy(alpha = 0.15f)
+                            else Color.Transparent
                         )
-                        .clickable { onItemSelected(index) }
-                )
+                        .clickable { onItemSelected(index) },
+                    contentAlignment = Alignment.Center
+                ) {
+                    AsyncImage(
+                        model = ImageRequest.Builder(context)
+                            .data("file:///android_asset/svg/${navIcon.svgFileName}")
+                            .decoderFactory(SvgDecoder.Factory())
+                            .build(),
+                        contentDescription = navIcon.contentDescription,
+                        modifier = Modifier.size(32.dp)
+                    )
+                }
             }
         }
     }

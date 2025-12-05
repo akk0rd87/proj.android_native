@@ -13,7 +13,6 @@ import androidx.compose.ui.unit.sp
 import com.jcross.prototype.data.MockDataProvider
 import com.jcross.prototype.ui.components.JCrossTopBar
 import com.jcross.prototype.ui.theme.TextPrimary
-import com.jcross.prototype.ui.theme.TextSecondary
 
 /**
  * Экран настроек
@@ -25,12 +24,13 @@ fun OptionsScreen(
     var settings by remember { mutableStateOf(MockDataProvider.getSettings()) }
 
     Scaffold(
-        topBar = {
+        bottomBar = {
             JCrossTopBar(
                 title = "Settings",
                 onBackClick = onBackClick
             )
-        }
+        },
+        contentWindowInsets = WindowInsets.safeDrawing
     ) { paddingValues ->
         Column(
             modifier = Modifier
@@ -65,7 +65,7 @@ fun OptionsScreen(
                 onCheckedChange = { settings = settings.copy(vibrateEnabled = it) }
             )
 
-            Divider(modifier = Modifier.padding(vertical = 8.dp))
+            HorizontalDivider(modifier = Modifier.padding(vertical = 8.dp))
 
             Text(
                 text = "Gameplay",
@@ -91,17 +91,6 @@ fun OptionsScreen(
                 checked = settings.autoFillEnabled,
                 onCheckedChange = { settings = settings.copy(autoFillEnabled = it) }
             )
-
-            Divider(modifier = Modifier.padding(vertical = 8.dp))
-
-            Spacer(modifier = Modifier.height(16.dp))
-
-            Button(
-                onClick = { /* TODO: Save settings */ },
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                Text("Save Settings", modifier = Modifier.padding(8.dp))
-            }
         }
     }
 }
