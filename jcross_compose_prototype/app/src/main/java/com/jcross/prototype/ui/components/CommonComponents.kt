@@ -206,6 +206,78 @@ fun FolderItem(
 }
 
 /**
+ * Карточка папки для grid-макета
+ */
+@Composable
+fun FolderGridCard(
+    width: Int,
+    height: Int,
+    totalPuzzles: Int,
+    solvedPuzzles: Int,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    Card(
+        modifier = modifier
+            .aspectRatio(1f)
+            .shadow(
+                elevation = 4.dp,
+                shape = RoundedCornerShape(12.dp),
+                spotColor = ShadowColor
+            )
+            .clickable(onClick = onClick),
+        shape = RoundedCornerShape(12.dp),
+        colors = CardDefaults.cardColors(containerColor = Surface)
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(12.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
+            // Размер кроссворда
+            Text(
+                text = "${width}x${height}",
+                fontSize = 20.sp,
+                fontWeight = FontWeight.Bold,
+                color = TextPrimary
+            )
+
+            Spacer(modifier = Modifier.height(4.dp))
+
+            // Количество решенных/всего
+            Text(
+                text = "$solvedPuzzles/$totalPuzzles",
+                fontSize = 14.sp,
+                fontWeight = FontWeight.Medium,
+                color = TextSecondary
+            )
+
+            Spacer(modifier = Modifier.height(8.dp))
+
+            // Прогресс-бар
+            val progressPercent = if (totalPuzzles > 0) solvedPuzzles.toFloat() / totalPuzzles else 0f
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(4.dp)
+                    .clip(RoundedCornerShape(2.dp))
+                    .background(DividerColor)
+            ) {
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth(progressPercent)
+                        .fillMaxHeight()
+                        .clip(RoundedCornerShape(2.dp))
+                        .background(Primary)
+                )
+            }
+        }
+    }
+}
+
+/**
  * Элемент списка головоломок
  */
 @Composable
@@ -261,6 +333,81 @@ fun PuzzleItem(
                     fontSize = 14.sp,
                     fontWeight = FontWeight.Medium,
                     color = ColorS
+                )
+            }
+        }
+    }
+}
+
+/**
+ * Карточка головоломки для grid-макета
+ */
+@Composable
+fun PuzzleGridCard(
+    puzzleNumber: Int,
+    isSolved: Boolean,
+    isInProgress: Boolean,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    Card(
+        modifier = modifier
+            .aspectRatio(1f)
+            .shadow(
+                elevation = 4.dp,
+                shape = RoundedCornerShape(12.dp),
+                spotColor = ShadowColor
+            )
+            .clickable(onClick = onClick),
+        shape = RoundedCornerShape(12.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = when {
+                isSolved -> ColorSLight
+                isInProgress -> ColorLLight
+                else -> Surface
+            }
+        )
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(12.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
+            // Номер головоломки
+            Text(
+                text = "$puzzleNumber",
+                fontSize = 24.sp,
+                fontWeight = FontWeight.Bold,
+                color = TextPrimary
+            )
+
+            Spacer(modifier = Modifier.height(8.dp))
+
+            // Иконка статуса
+            Box(
+                modifier = Modifier
+                    .size(32.dp)
+                    .clip(CircleShape)
+                    .background(
+                        when {
+                            isSolved -> ColorS
+                            isInProgress -> ColorL
+                            else -> DividerColor
+                        }
+                    ),
+                contentAlignment = Alignment.Center
+            ) {
+                Text(
+                    text = when {
+                        isSolved -> "✓"
+                        isInProgress -> "•"
+                        else -> ""
+                    },
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color.White
                 )
             }
         }

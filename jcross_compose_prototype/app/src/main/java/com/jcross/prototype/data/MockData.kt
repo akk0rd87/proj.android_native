@@ -59,12 +59,25 @@ object MockDataProvider {
             else -> 10
         }
 
+        // Define size ranges for each group
+        val sizeRange = when (groupId) {
+            0 -> listOf(5 to 5, 5 to 10, 10 to 5)  // XS
+            1 -> listOf(10 to 10, 10 to 15, 15 to 10, 15 to 15)  // S
+            2 -> listOf(15 to 15, 15 to 20, 20 to 15, 20 to 20)  // M
+            3 -> listOf(20 to 20, 20 to 25, 25 to 20, 25 to 25)  // L
+            4 -> listOf(25 to 25, 25 to 30, 30 to 25, 30 to 30)  // XL
+            else -> listOf(10 to 10)
+        }
+
         return List(folderCount) { index ->
+            val (width, height) = sizeRange[index % sizeRange.size]
             Folder(
                 id = index,
                 name = "Folder ${index + 1}",
                 totalPuzzles = (50..200).random(),
-                solvedPuzzles = (0..10).random()
+                solvedPuzzles = (0..50).random(),
+                width = width,
+                height = height
             )
         }
     }

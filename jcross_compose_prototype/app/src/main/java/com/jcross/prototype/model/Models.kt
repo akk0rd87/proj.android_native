@@ -33,7 +33,9 @@ data class Folder(
     val name: String,
     val totalPuzzles: Int,
     val solvedPuzzles: Int,
-    val puzzles: List<Puzzle> = emptyList()
+    val puzzles: List<Puzzle> = emptyList(),
+    val width: Int = 0,  // Width of puzzles in this folder (multiples of 5)
+    val height: Int = 0  // Height of puzzles in this folder (multiples of 5)
 ) {
     val progressPercent: Float
         get() = if (totalPuzzles > 0) solvedPuzzles.toFloat() / totalPuzzles else 0f

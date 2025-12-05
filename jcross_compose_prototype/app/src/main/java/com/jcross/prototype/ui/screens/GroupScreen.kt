@@ -1,15 +1,16 @@
 package com.jcross.prototype.ui.screens
 
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.itemsIndexed
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.jcross.prototype.data.MockDataProvider
 import com.jcross.prototype.model.Folder
-import com.jcross.prototype.ui.components.FolderItem
+import com.jcross.prototype.ui.components.FolderGridCard
 import com.jcross.prototype.ui.components.JCrossTopBar
 
 /**
@@ -32,19 +33,21 @@ fun GroupScreen(
             )
         }
     ) { paddingValues ->
-        LazyColumn(
+        LazyVerticalGrid(
+            columns = GridCells.Adaptive(minSize = 90.dp),
             modifier = Modifier
                 .fillMaxSize()
                 .padding(paddingValues),
             contentPadding = PaddingValues(16.dp),
+            horizontalArrangement = Arrangement.spacedBy(12.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
             itemsIndexed(folders) { index, folder ->
-                FolderItem(
-                    name = folder.name,
+                FolderGridCard(
+                    width = folder.width,
+                    height = folder.height,
                     totalPuzzles = folder.totalPuzzles,
                     solvedPuzzles = folder.solvedPuzzles,
-                    progressPercent = folder.progressPercent,
                     onClick = { onFolderSelected(index) }
                 )
             }
