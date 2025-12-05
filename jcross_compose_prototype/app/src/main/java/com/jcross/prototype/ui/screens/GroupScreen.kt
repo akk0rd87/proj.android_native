@@ -12,6 +12,7 @@ import com.jcross.prototype.data.MockDataProvider
 import com.jcross.prototype.model.Folder
 import com.jcross.prototype.ui.components.FolderGridCard
 import com.jcross.prototype.ui.components.JCrossTopBar
+import com.jcross.prototype.ui.utils.swipeToBack
 
 /**
  * Экран списка папок в группе (по размеру)
@@ -31,13 +32,15 @@ fun GroupScreen(
                 title = group.size.label,
                 onBackClick = onBackClick
             )
-        }
+        },
+        contentWindowInsets = WindowInsets.safeDrawing
     ) { paddingValues ->
         LazyVerticalGrid(
             columns = GridCells.Adaptive(minSize = 90.dp),
             modifier = Modifier
                 .fillMaxSize()
-                .padding(paddingValues),
+                .padding(paddingValues)
+                .swipeToBack(onSwipeRight = onBackClick),
             contentPadding = PaddingValues(16.dp),
             horizontalArrangement = Arrangement.spacedBy(12.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp)

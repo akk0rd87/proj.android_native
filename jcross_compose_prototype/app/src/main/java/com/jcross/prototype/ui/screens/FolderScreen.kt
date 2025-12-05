@@ -11,6 +11,7 @@ import androidx.compose.ui.unit.dp
 import com.jcross.prototype.data.MockDataProvider
 import com.jcross.prototype.ui.components.JCrossTopBar
 import com.jcross.prototype.ui.components.PuzzleGridCard
+import com.jcross.prototype.ui.utils.swipeToBack
 
 /**
  * Экран списка головоломок в папке
@@ -33,13 +34,15 @@ fun FolderScreen(
                 title = "${folder.width}x${folder.height}",
                 onBackClick = onBackClick
             )
-        }
+        },
+        contentWindowInsets = WindowInsets.safeDrawing
     ) { paddingValues ->
         LazyVerticalGrid(
             columns = GridCells.Adaptive(minSize = 80.dp),
             modifier = Modifier
                 .fillMaxSize()
-                .padding(paddingValues),
+                .padding(paddingValues)
+                .swipeToBack(onSwipeRight = onBackClick),
             contentPadding = PaddingValues(16.dp),
             horizontalArrangement = Arrangement.spacedBy(12.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp)

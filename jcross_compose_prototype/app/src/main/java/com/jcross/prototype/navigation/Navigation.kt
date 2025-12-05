@@ -35,7 +35,8 @@ sealed class Screen(val route: String) {
 @Composable
 fun AppNavigation(
     navController: NavHostController,
-    onThemeSelected: (com.jcross.prototype.model.AppTheme) -> Unit = {}
+    onThemeSelected: (com.jcross.prototype.model.AppTheme) -> Unit = {},
+    onImmersiveModeChange: (Boolean) -> Unit = {}
 ) {
     NavHost(
         navController = navController,
@@ -114,7 +115,8 @@ fun AppNavigation(
                 groupId = groupId,
                 folderId = folderId,
                 puzzleId = puzzleId,
-                onBackClick = { navController.popBackStack() }
+                onBackClick = { navController.popBackStack() },
+                onImmersiveModeChange = onImmersiveModeChange
             )
         }
 

@@ -26,7 +26,8 @@ fun GameScreen(
     groupId: Int,
     folderId: Int,
     puzzleId: Int,
-    onBackClick: () -> Unit
+    onBackClick: () -> Unit,
+    onImmersiveModeChange: (Boolean) -> Unit = {}
 ) {
     val folders = remember { MockDataProvider.getFoldersForGroup(groupId) }
     val folder = folders.getOrNull(folderId) ?: return
@@ -36,13 +37,22 @@ fun GameScreen(
     val gameField = remember { MockDataProvider.getGameField(puzzle) }
     val cells = remember { mutableStateOf(gameField.cells) }
 
+    // Enable immersive mode when entering game screen
+    DisposableEffect(Unit) {
+        onImmersiveModeChange(true)
+        onDispose {
+            onImmersiveModeChange(false)
+        }
+    }
+
     Scaffold(
         topBar = {
             JCrossTopBar(
                 title = puzzle.name,
                 onBackClick = onBackClick
             )
-        }
+        },
+        contentWindowInsets = WindowInsets(0.dp)
     ) { paddingValues ->
         Column(
             modifier = Modifier
