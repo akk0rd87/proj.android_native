@@ -28,7 +28,7 @@ fun FolderScreen(
     val puzzles = remember { MockDataProvider.getPuzzlesForFolder(folderId, folder.totalPuzzles) }
 
     Scaffold(
-        topBar = {
+        bottomBar = {
             JCrossTopBar(
                 title = folder.name,
                 onBackClick = onBackClick
@@ -48,7 +48,7 @@ fun FolderScreen(
                 PuzzleGridCard(
                     puzzleNumber = index + 1,
                     isSolved = puzzle.isSolved,
-                    isInProgress = puzzle.timeSpent > 0 && !puzzle.isSolved,
+                    isInProgress = false,
                     onClick = { onPuzzleSelected(index) }
                 )
             }

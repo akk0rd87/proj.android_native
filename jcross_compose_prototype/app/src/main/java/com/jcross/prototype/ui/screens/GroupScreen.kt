@@ -26,9 +26,9 @@ fun GroupScreen(
     val group = remember { MockDataProvider.getGroups()[groupId] }
 
     Scaffold(
-        topBar = {
+        bottomBar = {
             JCrossTopBar(
-                title = "${group.size.label} Puzzles",
+                title = group.size.label,
                 onBackClick = onBackClick
             )
         }

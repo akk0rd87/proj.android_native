@@ -49,9 +49,7 @@ data class Puzzle(
     val name: String,
     val width: Int,
     val height: Int,
-    val isSolved: Boolean,
-    val timeSpent: Int, // в секундах
-    val bestTime: Int? = null
+    val isSolved: Boolean
 )
 
 /**

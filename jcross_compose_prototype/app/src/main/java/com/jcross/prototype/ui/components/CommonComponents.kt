@@ -285,7 +285,6 @@ fun PuzzleItem(
     name: String,
     size: String,
     isSolved: Boolean,
-    timeSpent: Int?,
     onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -327,11 +326,11 @@ fun PuzzleItem(
                 )
             }
 
-            if (isSolved && timeSpent != null) {
+            if (isSolved) {
                 Text(
-                    text = formatTime(timeSpent),
-                    fontSize = 14.sp,
-                    fontWeight = FontWeight.Medium,
+                    text = "✓",
+                    fontSize = 24.sp,
+                    fontWeight = FontWeight.Bold,
                     color = ColorS
                 )
             }
@@ -453,15 +452,6 @@ fun BottomNavigationBar(
 }
 
 /**
- * Форматирование времени в мм:сс
- */
-private fun formatTime(seconds: Int): String {
-    val mins = seconds / 60
-    val secs = seconds % 60
-    return String.format("%d:%02d", mins, secs)
-}
-
-/**
  * Top App Bar с заголовком и кнопкой назад
  */
 @OptIn(ExperimentalMaterial3Api::class)
@@ -473,12 +463,18 @@ fun JCrossTopBar(
 ) {
     TopAppBar(
         title = {
-            Text(
-                text = title,
-                fontSize = 20.sp,
-                fontWeight = FontWeight.Bold,
-                color = TextPrimary
-            )
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.Center,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    text = title,
+                    fontSize = 20.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = TextPrimary
+                )
+            }
         },
         navigationIcon = {
             if (onBackClick != null) {

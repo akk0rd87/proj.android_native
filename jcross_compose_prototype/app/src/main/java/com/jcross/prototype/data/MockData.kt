@@ -73,7 +73,7 @@ object MockDataProvider {
             val (width, height) = sizeRange[index % sizeRange.size]
             Folder(
                 id = index,
-                name = "Folder ${index + 1}",
+                name = "${index + 1}",
                 totalPuzzles = (50..200).random(),
                 solvedPuzzles = (0..50).random(),
                 width = width,
@@ -99,9 +99,7 @@ object MockDataProvider {
                 name = "Puzzle ${index + 1}",
                 width = size.first,
                 height = size.second,
-                isSolved = index < 3, // Первые 3 решены для примера
-                timeSpent = if (index < 3) (60..600).random() else 0,
-                bestTime = if (index < 3) (60..600).random() else null
+                isSolved = index < 3 // Первые 3 решены для примера
             )
         }
     }
