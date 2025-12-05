@@ -377,7 +377,7 @@ fun PuzzleGridCard(
             // Номер головоломки
             Text(
                 text = "$puzzleNumber",
-                fontSize = 24.sp,
+                fontSize = 20.sp,
                 fontWeight = FontWeight.Bold,
                 color = TextPrimary
             )
