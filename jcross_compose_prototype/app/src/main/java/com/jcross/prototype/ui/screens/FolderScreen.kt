@@ -30,7 +30,7 @@ fun FolderScreen(
     Scaffold(
         bottomBar = {
             JCrossTopBar(
-                title = folder.name,
+                title = "${folder.width}x${folder.height}",
                 onBackClick = onBackClick
             )
         }

@@ -461,12 +461,35 @@ fun JCrossTopBar(
     onBackClick: (() -> Unit)? = null,
     modifier: Modifier = Modifier
 ) {
-    TopAppBar(
-        title = {
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.Center,
-                verticalAlignment = Alignment.CenterVertically
+    Surface(
+        modifier = modifier
+            .fillMaxWidth()
+            .height(64.dp),
+        color = DividerColor,
+        shadowElevation = 4.dp
+    ) {
+        Row(
+            modifier = Modifier.fillMaxSize(),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            // Кнопка назад
+            if (onBackClick != null) {
+                IconButton(
+                    onClick = onBackClick,
+                    modifier = Modifier.size(64.dp)
+                ) {
+                    Text("←", fontSize = 28.sp, color = TextPrimary)
+                }
+            } else {
+                Spacer(modifier = Modifier.width(64.dp))
+            }
+
+            // Заголовок по центру
+            Box(
+                modifier = Modifier
+                    .weight(1f)
+                    .fillMaxHeight(),
+                contentAlignment = Alignment.Center
             ) {
                 Text(
                     text = title,
@@ -475,17 +498,9 @@ fun JCrossTopBar(
                     color = TextPrimary
                 )
             }
-        },
-        navigationIcon = {
-            if (onBackClick != null) {
-                IconButton(onClick = onBackClick) {
-                    Text("←", fontSize = 28.sp, color = TextPrimary)
-                }
-            }
-        },
-        colors = TopAppBarDefaults.topAppBarColors(
-            containerColor = Surface
-        ),
-        modifier = modifier
-    )
+
+            // Пустое пространство справа для баланса
+            Spacer(modifier = Modifier.width(64.dp))
+        }
+    }
 }
