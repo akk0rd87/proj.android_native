@@ -1,34 +1,45 @@
 package com.jcross.prototype.ui.theme
 
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 
-// Primary colors for size categories
-val ColorXS = Color(0xFFFF9800)  // Orange
-val ColorS = Color(0xFF4CAF50)   // Green
-val ColorM = Color(0xFF9C27B0)   // Purple
-val ColorL = Color(0xFF2196F3)   // Blue
-val ColorXL = Color(0xFFE91E63)  // Pink
+// Two Dots inspired pastel colors for size categories
+val ColorXS = Color(0xFFFFB84D)  // Warm Peach/Orange
+val ColorS = Color(0xFF7DD181)   // Soft Mint Green
+val ColorM = Color(0xFFB399D8)   // Lavender Purple
+val ColorL = Color(0xFF6BBBF5)   // Sky Blue
+val ColorXL = Color(0xFFFF8FB1)  // Coral Pink
 
-// Background colors
-val ColorXSLight = Color(0xFFFFF3E0)
-val ColorSLight = Color(0xFFE8F5E9)
-val ColorMLight = Color(0xFFF3E5F5)
-val ColorLLight = Color(0xFFE3F2FD)
-val ColorXLLight = Color(0xFFFCE4EC)
+// Soft pastel background colors (very light tints)
+val ColorXSLight = Color(0xFFFFF5E6)  // Very light peach
+val ColorSLight = Color(0xFFEEF9EF)   // Very light mint
+val ColorMLight = Color(0xFFF5F0FB)   // Very light lavender
+val ColorLLight = Color(0xFFEEF7FD)   // Very light sky
+val ColorXLLight = Color(0xFFFFEEF4)  // Very light pink
 
-// App theme colors
-val BackgroundLight = Color(0xFFF5F7FA)
+// App theme colors - Two Dots style
+val BackgroundLight = Color(0xFFF8FAFB)  // Very light cool gray
 val BackgroundDark = Color(0xFF1A1A1A)
 val Surface = Color(0xFFFFFFFF)
 val SurfaceDark = Color(0xFF2C2C2C)
 
-val Primary = Color(0xFF3F51B5)
-val PrimaryVariant = Color(0xFF303F9F)
-val Secondary = Color(0xFF00BCD4)
+// Accent colors in Two Dots style
+val Primary = Color(0xFF6BBBF5)     // Sky blue
+val PrimaryVariant = Color(0xFF5AA3E0)
+val Secondary = Color(0xFFFFB84D)   // Warm peach
 
-val TextPrimary = Color(0xFF2C3E50)
-val TextSecondary = Color(0xFF95A5A6)
-val TextDisabled = Color(0xFFBDC3C7)
+// Text colors - softer and more muted
+val TextPrimary = Color(0xFF4A5568)    // Soft dark gray
+val TextSecondary = Color(0xFF9CA3AF)  // Medium gray
+val TextDisabled = Color(0xFFD1D5DB)   // Light gray
 
-val DividerColor = Color(0xFFECF0F1)
-val ShadowColor = Color(0x1A000000)
+val DividerColor = Color(0xFFE5E7EB)
+val ShadowColor = Color(0x0A000000)  // Very subtle shadow
+
+// Two Dots style gradient backgrounds
+val BackgroundGradient = Brush.verticalGradient(
+    colors = listOf(
+        Color(0xFFF0F9FF),  // Very light blue at top
+        Color(0xFFFFF5F7),  // Very light pink at bottom
+    )
+)

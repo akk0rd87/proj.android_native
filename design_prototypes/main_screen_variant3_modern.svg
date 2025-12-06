@@ -1,0 +1,174 @@
+<svg width="765" height="1360" viewBox="0 0 765 1360" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Gradients for categories -->
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FF6B6B;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FFE66D;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4ECDC4;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#44A08D;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#A8E6CF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FFD3B6;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad4" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8E44AD;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#3498DB;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad5" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FC5C7D;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#6A82FB;stop-opacity:1" />
+    </linearGradient>
+
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="4" stdDeviation="12" flood-opacity="0.15"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="765" height="1360" fill="#FAFBFC"/>
+
+  <!-- Header with search -->
+  <g transform="translate(0, 60)">
+    <text x="40" y="40" font-family="Arial, sans-serif" font-size="36" font-weight="700" fill="#1A1A1A">
+      Choose Size
+    </text>
+    <text x="40" y="75" font-family="Arial, sans-serif" font-size="16" fill="#999">
+      Select puzzle difficulty to start
+    </text>
+  </g>
+
+  <!-- Categories with modern cards -->
+  <g transform="translate(40, 180)">
+
+    <!-- XSmall - Horizontal Card -->
+    <g filter="url(#shadow)">
+      <rect width="685" height="120" rx="24" fill="url(#grad1)"/>
+      <g transform="translate(30, 30)">
+        <circle r="30" fill="rgba(255,255,255,0.3)"/>
+        <text x="0" y="12" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="white" text-anchor="middle">XS</text>
+      </g>
+      <text x="100" y="48" font-family="Arial, sans-serif" font-size="28" font-weight="600" fill="white">Extra Small</text>
+      <text x="100" y="78" font-family="Arial, sans-serif" font-size="18" fill="rgba(255,255,255,0.9)">2,823 puzzles available</text>
+
+      <!-- Arrow -->
+      <path d="M640 60 L655 60 L648 53 M655 60 L648 67" stroke="white" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+
+    <!-- Small -->
+    <g transform="translate(0, 145)" filter="url(#shadow)">
+      <rect width="685" height="120" rx="24" fill="url(#grad2)"/>
+      <g transform="translate(30, 30)">
+        <circle r="30" fill="rgba(255,255,255,0.3)"/>
+        <text x="0" y="12" font-family="Arial, sans-serif" font-size="32" font-weight="700" fill="white" text-anchor="middle">S</text>
+      </g>
+      <text x="100" y="48" font-family="Arial, sans-serif" font-size="28" font-weight="600" fill="white">Small</text>
+      <text x="100" y="78" font-family="Arial, sans-serif" font-size="18" fill="rgba(255,255,255,0.9)">9,738 puzzles available</text>
+
+      <!-- Progress indicator -->
+      <circle cx="620" cy="60" r="25" fill="rgba(255,255,255,0.3)"/>
+      <text x="620" y="68" font-family="Arial, sans-serif" font-size="18" font-weight="600" fill="white" text-anchor="middle">0%</text>
+    </g>
+
+    <!-- Medium -->
+    <g transform="translate(0, 290)" filter="url(#shadow)">
+      <rect width="685" height="120" rx="24" fill="url(#grad3)"/>
+      <g transform="translate(30, 30)">
+        <circle r="30" fill="rgba(255,255,255,0.3)"/>
+        <text x="0" y="12" font-family="Arial, sans-serif" font-size="32" font-weight="700" fill="white" text-anchor="middle">M</text>
+      </g>
+      <text x="100" y="48" font-family="Arial, sans-serif" font-size="28" font-weight="600" fill="white">Medium</text>
+      <text x="100" y="78" font-family="Arial, sans-serif" font-size="18" fill="rgba(255,255,255,0.9)">11,165 puzzles • Recommended</text>
+
+      <!-- Star for recommended -->
+      <path d="M640 60 L644 70 L655 71 L647 78 L649 89 L640 83 L631 89 L633 78 L625 71 L636 70 Z" fill="white"/>
+    </g>
+
+    <!-- Large -->
+    <g transform="translate(0, 435)" filter="url(#shadow)">
+      <rect width="685" height="120" rx="24" fill="url(#grad4)"/>
+      <g transform="translate(30, 30)">
+        <circle r="30" fill="rgba(255,255,255,0.3)"/>
+        <text x="0" y="12" font-family="Arial, sans-serif" font-size="32" font-weight="700" fill="white" text-anchor="middle">L</text>
+      </g>
+      <text x="100" y="48" font-family="Arial, sans-serif" font-size="28" font-weight="600" fill="white">Large</text>
+      <text x="100" y="78" font-family="Arial, sans-serif" font-size="18" fill="rgba(255,255,255,0.9)">25,629 puzzles available</text>
+
+      <!-- Time estimate -->
+      <g transform="translate(600, 50)">
+        <circle r="8" stroke="white" stroke-width="2" fill="none"/>
+        <line x1="0" y1="0" x2="0" y2="-4" stroke="white" stroke-width="2"/>
+        <line x1="0" y1="0" x2="3" y2="2" stroke="white" stroke-width="2"/>
+      </g>
+      <text x="620" y="68" font-family="Arial, sans-serif" font-size="13" fill="white">30min+</text>
+    </g>
+
+    <!-- XLarge -->
+    <g transform="translate(0, 580)" filter="url(#shadow)">
+      <rect width="685" height="120" rx="24" fill="url(#grad5)"/>
+      <g transform="translate(30, 30)">
+        <circle r="30" fill="rgba(255,255,255,0.3)"/>
+        <text x="0" y="12" font-family="Arial, sans-serif" font-size="26" font-weight="700" fill="white" text-anchor="middle">XL</text>
+      </g>
+      <text x="100" y="48" font-family="Arial, sans-serif" font-size="28" font-weight="600" fill="white">Extra Large</text>
+      <text x="100" y="78" font-family="Arial, sans-serif" font-size="18" fill="rgba(255,255,255,0.9)">4,480 puzzles • Expert level</text>
+
+      <!-- Fire icon for challenge -->
+      <text x="630" y="72" font-size="32">🔥</text>
+    </g>
+
+  </g>
+
+  <!-- Stats Cards -->
+  <g transform="translate(40, 920)">
+    <rect width="330" height="100" rx="16" fill="white" filter="url(#shadow)"/>
+    <text x="25" y="35" font-family="Arial, sans-serif" font-size="14" font-weight="600" fill="#999">YOUR PROGRESS</text>
+    <text x="25" y="70" font-family="Arial, sans-serif" font-size="36" font-weight="700" fill="#1A1A1A">0</text>
+    <text x="85" y="70" font-family="Arial, sans-serif" font-size="16" fill="#999">/ 53,835</text>
+
+    <rect x="355" width="330" height="100" rx="16" fill="white" filter="url(#shadow)"/>
+    <text x="380" y="35" font-family="Arial, sans-serif" font-size="14" font-weight="600" fill="#999">DAILY STREAK</text>
+    <text x="380" y="70" font-family="Arial, sans-serif" font-size="36" font-weight="700" fill="#4ECDC4">0</text>
+    <text x="420" y="70" font-family="Arial, sans-serif" font-size="16" fill="#999">days</text>
+  </g>
+
+  <!-- Bottom Navigation -->
+  <g transform="translate(0, 1230)">
+    <rect width="765" height="2" fill="#E5E5E5"/>
+    <rect y="2" width="765" height="128" fill="white"/>
+
+    <!-- Nav Items -->
+    <g transform="translate(55, 35)">
+      <circle cx="0" cy="0" r="24" fill="#4ECDC4"/>
+      <rect x="-8" y="-8" width="16" height="16" rx="3" fill="white"/>
+      <text y="40" font-family="Arial, sans-serif" font-size="11" fill="#4ECDC4" text-anchor="middle" font-weight="600">Home</text>
+    </g>
+
+    <g transform="translate(165, 35)">
+      <circle cx="0" cy="0" r="24" fill="#F0F0F0"/>
+      <text y="40" font-family="Arial, sans-serif" font-size="11" fill="#999" text-anchor="middle">Stats</text>
+    </g>
+
+    <g transform="translate(275, 35)">
+      <circle cx="0" cy="0" r="24" fill="#F0F0F0"/>
+      <text y="40" font-family="Arial, sans-serif" font-size="11" fill="#999" text-anchor="middle">Themes</text>
+    </g>
+
+    <g transform="translate(385, 35)">
+      <circle cx="0" cy="0" r="24" fill="#F0F0F0"/>
+      <text y="40" font-family="Arial, sans-serif" font-size="11" fill="#999" text-anchor="middle">Rewards</text>
+    </g>
+
+    <g transform="translate(495, 35)">
+      <circle cx="0" cy="0" r="24" fill="#F0F0F0"/>
+      <text y="40" font-family="Arial, sans-serif" font-size="11" fill="#999" text-anchor="middle">Profile</text>
+    </g>
+
+    <g transform="translate(605, 35)">
+      <circle cx="0" cy="0" r="24" fill="#F0F0F0"/>
+      <text y="40" font-family="Arial, sans-serif" font-size="11" fill="#999" text-anchor="middle">More</text>
+    </g>
+  </g>
+</svg>

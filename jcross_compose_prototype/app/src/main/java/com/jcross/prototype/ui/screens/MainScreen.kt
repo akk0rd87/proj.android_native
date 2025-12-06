@@ -1,5 +1,6 @@
 package com.jcross.prototype.ui.screens
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -14,6 +15,8 @@ import androidx.compose.runtime.remember
 import android.util.Log
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -48,25 +51,36 @@ fun MainScreen(
                 }
             )
         },
-        contentWindowInsets = WindowInsets.safeDrawing
+        contentWindowInsets = WindowInsets.safeDrawing,
+        containerColor = Color.Transparent  // Make scaffold transparent to show gradient
     ) { paddingValues ->
         Column(
             modifier = Modifier
                 .fillMaxSize()
+                .background(BackgroundGradient)  // Apply Two Dots gradient
                 .padding(paddingValues)
         ) {
-            // Header
+            // Header - Two Dots inspired style
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 32.dp, vertical = 24.dp),
+                    .padding(horizontal = 32.dp, vertical = 32.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(
-                    text = "JCROSS NONOGRAMS",
-                    fontSize = 28.sp,
-                    fontWeight = FontWeight.Bold,
-                    color = TextPrimary
+                    text = "JCROSS",
+                    fontSize = 36.sp,
+                    fontWeight = FontWeight.Black,  // Extra bold like Two Dots
+                    color = Primary,  // Sky blue accent
+                    letterSpacing = 2.sp  // Wider spacing for the title
+                )
+                Spacer(modifier = Modifier.height(4.dp))
+                Text(
+                    text = "NONOGRAMS",
+                    fontSize = 14.sp,
+                    fontWeight = FontWeight.Medium,
+                    color = TextSecondary,
+                    letterSpacing = 3.sp  // Wide letter spacing
                 )
             }
 

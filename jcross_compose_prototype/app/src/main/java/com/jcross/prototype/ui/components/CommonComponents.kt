@@ -52,12 +52,12 @@ fun SizeCard(
             .fillMaxWidth()
             .defaultMinSize(minHeight = if (isCompact) 72.dp else 96.dp)
             .shadow(
-                elevation = 8.dp,
-                shape = RoundedCornerShape(20.dp),
+                elevation = 2.dp,  // Much softer shadow for Two Dots style
+                shape = RoundedCornerShape(28.dp),  // Larger corner radius
                 spotColor = ShadowColor
             )
             .clickable(onClick = onClick),
-        shape = RoundedCornerShape(20.dp),
+        shape = RoundedCornerShape(28.dp),  // Two Dots uses very rounded corners
         colors = CardDefaults.cardColors(containerColor = Surface)
     ) {
         Row(
@@ -108,19 +108,19 @@ fun SizeCard(
 
                 Spacer(modifier = Modifier.height(if (isCompact) 4.dp else 8.dp))
 
-                // Progress bar
+                // Progress bar - fully rounded for Two Dots style
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(progressBarHeight)
-                        .clip(RoundedCornerShape(4.dp))
+                        .clip(RoundedCornerShape(progressBarHeight / 2))  // Pill shape
                         .background(DividerColor)
                 ) {
                     Box(
                         modifier = Modifier
                             .fillMaxWidth(progressPercent)
                             .fillMaxHeight()
-                            .clip(RoundedCornerShape(4.dp))
+                            .clip(RoundedCornerShape(progressBarHeight / 2))  // Pill shape
                             .background(color)
                     )
                 }
@@ -155,12 +155,12 @@ fun FolderItem(
         modifier = modifier
             .fillMaxWidth()
             .shadow(
-                elevation = 4.dp,
-                shape = RoundedCornerShape(12.dp),
+                elevation = 2.dp,  // Softer shadow
+                shape = RoundedCornerShape(24.dp),  // More rounded
                 spotColor = ShadowColor
             )
             .clickable(onClick = onClick),
-        shape = RoundedCornerShape(12.dp),
+        shape = RoundedCornerShape(24.dp),  // Two Dots style
         colors = CardDefaults.cardColors(containerColor = Surface)
     ) {
         Column(
@@ -190,19 +190,19 @@ fun FolderItem(
 
             Spacer(modifier = Modifier.height(12.dp))
 
-            // Progress bar
+            // Progress bar - pill shaped
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(6.dp)
-                    .clip(RoundedCornerShape(3.dp))
+                    .clip(RoundedCornerShape(3.dp))  // Pill shape
                     .background(DividerColor)
             ) {
                 Box(
                     modifier = Modifier
                         .fillMaxWidth(progressPercent)
                         .fillMaxHeight()
-                        .clip(RoundedCornerShape(3.dp))
+                        .clip(RoundedCornerShape(3.dp))  // Pill shape
                         .background(Primary)
                 )
             }
@@ -226,12 +226,12 @@ fun FolderGridCard(
         modifier = modifier
             .aspectRatio(1f)
             .shadow(
-                elevation = 4.dp,
-                shape = RoundedCornerShape(12.dp),
+                elevation = 2.dp,  // Softer shadow
+                shape = RoundedCornerShape(24.dp),  // Two Dots style
                 spotColor = ShadowColor
             )
             .clickable(onClick = onClick),
-        shape = RoundedCornerShape(12.dp),
+        shape = RoundedCornerShape(24.dp),  // Two Dots style
         colors = CardDefaults.cardColors(containerColor = Surface)
     ) {
         Column(
@@ -261,20 +261,20 @@ fun FolderGridCard(
 
             Spacer(modifier = Modifier.height(8.dp))
 
-            // Прогресс-бар
+            // Прогресс-бар - pill shaped
             val progressPercent = if (totalPuzzles > 0) solvedPuzzles.toFloat() / totalPuzzles else 0f
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(4.dp)
-                    .clip(RoundedCornerShape(2.dp))
+                    .clip(RoundedCornerShape(2.dp))  // Pill shape
                     .background(DividerColor)
             ) {
                 Box(
                     modifier = Modifier
                         .fillMaxWidth(progressPercent)
                         .fillMaxHeight()
-                        .clip(RoundedCornerShape(2.dp))
+                        .clip(RoundedCornerShape(2.dp))  // Pill shape
                         .background(Primary)
                 )
             }
@@ -297,12 +297,12 @@ fun PuzzleItem(
         modifier = modifier
             .fillMaxWidth()
             .shadow(
-                elevation = 2.dp,
-                shape = RoundedCornerShape(12.dp),
+                elevation = 2.dp,  // Softer shadow
+                shape = RoundedCornerShape(20.dp),  // More rounded
                 spotColor = ShadowColor
             )
             .clickable(onClick = onClick),
-        shape = RoundedCornerShape(12.dp),
+        shape = RoundedCornerShape(20.dp),  // Two Dots style
         colors = CardDefaults.cardColors(
             containerColor = if (isSolved) ColorSLight else Surface
         )
@@ -358,12 +358,12 @@ fun PuzzleGridCard(
         modifier = modifier
             .aspectRatio(1f)
             .shadow(
-                elevation = 4.dp,
-                shape = RoundedCornerShape(12.dp),
+                elevation = 2.dp,  // Softer shadow
+                shape = RoundedCornerShape(20.dp),  // More rounded
                 spotColor = ShadowColor
             )
             .clickable(onClick = onClick),
-        shape = RoundedCornerShape(12.dp),
+        shape = RoundedCornerShape(20.dp),  // Two Dots style
         colors = CardDefaults.cardColors(
             containerColor = when {
                 isSolved -> ColorSLight
@@ -449,7 +449,7 @@ fun BottomNavigationBar(
 
     Surface(
         modifier = modifier.fillMaxWidth(),
-        shadowElevation = 8.dp,
+        shadowElevation = 4.dp,  // Softer shadow
         color = Surface
     ) {
         Row(
@@ -470,10 +470,10 @@ fun BottomNavigationBar(
 
                 Box(
                     modifier = Modifier
-                        .size(48.dp)
+                        .size(56.dp)  // Slightly larger touch target
                         .clip(CircleShape)
                         .background(
-                            if (index == selectedIndex) Primary.copy(alpha = 0.15f)
+                            if (index == selectedIndex) Primary.copy(alpha = 0.12f)  // Softer highlight
                             else Color.Transparent
                         )
                         .clickable { onItemSelected(index) },
@@ -482,7 +482,7 @@ fun BottomNavigationBar(
                     AsyncImage(
                         model = imageRequest,
                         contentDescription = navIcon.contentDescription,
-                        modifier = Modifier.size(32.dp)
+                        modifier = Modifier.size(28.dp)  // Slightly smaller icons for cleaner look
                     )
                 }
             }
@@ -504,8 +504,8 @@ fun JCrossTopBar(
         modifier = modifier
             .fillMaxWidth()
             .height(64.dp),
-        color = DividerColor,
-        shadowElevation = 4.dp
+        color = Surface,  // White background like Two Dots
+        shadowElevation = 2.dp  // Softer shadow
     ) {
         Row(
             modifier = Modifier.fillMaxSize(),

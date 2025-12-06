@@ -1,0 +1,148 @@
+<svg width="765" height="1360" viewBox="0 0 765 1360" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="765" height="1360" fill="#F5F7FA"/>
+
+  <!-- Header -->
+  <rect width="765" height="80" fill="white"/>
+  <text x="32" y="50" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="#2C3E50">
+    JCross Nonograms
+  </text>
+
+  <!-- Main Content Area -->
+  <g transform="translate(32, 120)">
+
+    <!-- XSmall Card -->
+    <g>
+      <rect width="700" height="140" rx="20" fill="white" filter="url(#shadow)"/>
+      <circle cx="70" cy="70" r="35" fill="#FFF4E6" stroke="#FF9500" stroke-width="3"/>
+      <text x="70" y="80" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="#FF9500" text-anchor="middle">XS</text>
+      <text x="140" y="60" font-family="Arial, sans-serif" font-size="32" font-weight="600" fill="#2C3E50">XSmall</text>
+      <text x="140" y="95" font-family="Arial, sans-serif" font-size="18" fill="#95A5A6">2,823 puzzles</text>
+
+      <!-- Progress bar -->
+      <rect x="140" y="105" width="520" height="8" rx="4" fill="#E8EAED"/>
+      <rect x="140" y="105" width="0" height="8" rx="4" fill="#FF9500"/>
+      <text x="665" y="95" font-family="Arial, sans-serif" font-size="24" font-weight="600" fill="#95A5A6" text-anchor="end">0%</text>
+    </g>
+
+    <!-- Small Card -->
+    <g transform="translate(0, 160)">
+      <rect width="700" height="140" rx="20" fill="white" filter="url(#shadow)"/>
+      <circle cx="70" cy="70" r="35" fill="#E8F8F5" stroke="#00C896" stroke-width="3"/>
+      <text x="70" y="80" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="#00C896" text-anchor="middle">S</text>
+      <text x="140" y="60" font-family="Arial, sans-serif" font-size="32" font-weight="600" fill="#2C3E50">Small</text>
+      <text x="140" y="95" font-family="Arial, sans-serif" font-size="18" fill="#95A5A6">9,738 puzzles</text>
+
+      <!-- Progress bar -->
+      <rect x="140" y="105" width="520" height="8" rx="4" fill="#E8EAED"/>
+      <rect x="140" y="105" width="0" height="8" rx="4" fill="#00C896"/>
+      <text x="665" y="95" font-family="Arial, sans-serif" font-size="24" font-weight="600" fill="#95A5A6" text-anchor="end">0%</text>
+    </g>
+
+    <!-- Medium Card -->
+    <g transform="translate(0, 320)">
+      <rect width="700" height="140" rx="20" fill="white" filter="url(#shadow)"/>
+      <circle cx="70" cy="70" r="35" fill="#FFF0F5" stroke="#FF4081" stroke-width="3"/>
+      <text x="70" y="80" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="#FF4081" text-anchor="middle">M</text>
+      <text x="140" y="60" font-family="Arial, sans-serif" font-size="32" font-weight="600" fill="#2C3E50">Medium</text>
+      <text x="140" y="95" font-family="Arial, sans-serif" font-size="18" fill="#95A5A6">11,165 puzzles</text>
+
+      <!-- Progress bar -->
+      <rect x="140" y="105" width="520" height="8" rx="4" fill="#E8EAED"/>
+      <rect x="140" y="105" width="0" height="8" rx="4" fill="#FF4081"/>
+      <text x="665" y="95" font-family="Arial, sans-serif" font-size="24" font-weight="600" fill="#95A5A6" text-anchor="end">0%</text>
+    </g>
+
+    <!-- Large Card -->
+    <g transform="translate(0, 480)">
+      <rect width="700" height="140" rx="20" fill="white" filter="url(#shadow)"/>
+      <circle cx="70" cy="70" r="35" fill="#E8F0FF" stroke="#2196F3" stroke-width="3"/>
+      <text x="70" y="80" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="#2196F3" text-anchor="middle">L</text>
+      <text x="140" y="60" font-family="Arial, sans-serif" font-size="32" font-weight="600" fill="#2C3E50">Large</text>
+      <text x="140" y="95" font-family="Arial, sans-serif" font-size="18" fill="#95A5A6">25,629 puzzles</text>
+
+      <!-- Progress bar -->
+      <rect x="140" y="105" width="520" height="8" rx="4" fill="#E8EAED"/>
+      <rect x="140" y="105" width="0" height="8" rx="4" fill="#2196F3"/>
+      <text x="665" y="95" font-family="Arial, sans-serif" font-size="24" font-weight="600" fill="#95A5A6" text-anchor="end">0%</text>
+    </g>
+
+    <!-- XLarge Card -->
+    <g transform="translate(0, 640)">
+      <rect width="700" height="140" rx="20" fill="white" filter="url(#shadow)"/>
+      <circle cx="70" cy="70" r="35" fill="#F3E5F5" stroke="#9C27B0" stroke-width="3"/>
+      <text x="70" y="80" font-family="Arial, sans-serif" font-size="26" font-weight="bold" fill="#9C27B0" text-anchor="middle">XL</text>
+      <text x="140" y="60" font-family="Arial, sans-serif" font-size="32" font-weight="600" fill="#2C3E50">XLarge</text>
+      <text x="140" y="95" font-family="Arial, sans-serif" font-size="18" fill="#95A5A6">4,480 puzzles</text>
+
+      <!-- Progress bar -->
+      <rect x="140" y="105" width="520" height="8" rx="4" fill="#E8EAED"/>
+      <rect x="140" y="105" width="0" height="8" rx="4" fill="#9C27B0"/>
+      <text x="665" y="95" font-family="Arial, sans-serif" font-size="24" font-weight="600" fill="#95A5A6" text-anchor="end">0%</text>
+    </g>
+
+  </g>
+
+  <!-- Bottom Navigation Bar -->
+  <g transform="translate(0, 1130)">
+    <rect width="765" height="100" fill="white" filter="url(#shadowTop)"/>
+
+    <!-- Icons -->
+    <g transform="translate(47, 25)">
+      <!-- Settings -->
+      <circle cx="25" cy="25" r="28" fill="#ECF0F1"/>
+      <path d="M25 18 L32 25 L25 32 L18 25 Z" fill="#7F8C8D" stroke="#7F8C8D" stroke-width="2"/>
+      <circle cx="25" cy="25" r="4" fill="white"/>
+    </g>
+
+    <g transform="translate(157, 25)">
+      <!-- Themes -->
+      <circle cx="25" cy="25" r="28" fill="#ECF0F1"/>
+      <rect x="17" y="17" width="16" height="16" rx="2" fill="#E74C3C"/>
+    </g>
+
+    <g transform="translate(267, 25)">
+      <!-- Achievements -->
+      <circle cx="25" cy="25" r="28" fill="#FFD700"/>
+      <path d="M25 15 L28 22 L35 23 L30 28 L31 35 L25 32 L19 35 L20 28 L15 23 L22 22 Z" fill="white"/>
+    </g>
+
+    <g transform="translate(377, 25)">
+      <!-- Mail -->
+      <circle cx="25" cy="25" r="28" fill="#ECF0F1"/>
+      <rect x="15" y="20" width="20" height="14" rx="2" fill="none" stroke="#7F8C8D" stroke-width="2"/>
+      <path d="M15 20 L25 27 L35 20" fill="none" stroke="#7F8C8D" stroke-width="2"/>
+    </g>
+
+    <g transform="translate(487, 25)">
+      <!-- Profile -->
+      <circle cx="25" cy="25" r="28" fill="#ECF0F1"/>
+      <circle cx="25" cy="22" r="6" fill="#7F8C8D"/>
+      <path d="M15 38 Q15 30 25 30 Q35 30 35 38" fill="#7F8C8D"/>
+    </g>
+
+    <g transform="translate(597, 25)">
+      <!-- Stats -->
+      <circle cx="25" cy="25" r="28" fill="#ECF0F1"/>
+      <rect x="18" y="28" width="4" height="10" fill="#7F8C8D"/>
+      <rect x="23" y="23" width="4" height="15" fill="#7F8C8D"/>
+      <rect x="28" y="18" width="4" height="20" fill="#7F8C8D"/>
+    </g>
+
+    <g transform="translate(707, 25)">
+      <!-- Like -->
+      <circle cx="25" cy="25" r="28" fill="#ECF0F1"/>
+      <path d="M25 35 L18 28 Q15 25 18 22 Q21 19 25 23 Q29 19 32 22 Q35 25 32 28 Z" fill="#7F8C8D"/>
+    </g>
+  </g>
+
+  <!-- Shadow filters -->
+  <defs>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="8" flood-opacity="0.1"/>
+    </filter>
+    <filter id="shadowTop">
+      <feDropShadow dx="0" dy="-2" stdDeviation="8" flood-opacity="0.1"/>
+    </filter>
+  </defs>
+</svg>
